@@ -46,7 +46,7 @@ public class Application {
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		
 		BookingService bookingService = ctx.getBean(BookingService.class);
-		bookingService.book("Greg", "Roy", "Craig");
+		bookingService.book("Alice", "Bob", "Carol");
 		Assert.assertEquals("First booking should work with no problem",
 				3, bookingService.findAllBookings().size());
 		
@@ -56,7 +56,7 @@ public class Application {
 			System.out.println(e.getMessage());
 		}
 		
-		Assert.assertEquals("'Samual' should have triggered a rollback",
+		Assert.assertEquals("'Samuel' should have triggered a rollback",
 				3, bookingService.findAllBookings().size());
 
 		try {
