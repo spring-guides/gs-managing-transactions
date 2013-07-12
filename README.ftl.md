@@ -6,7 +6,7 @@
 What you'll build
 -----------------
 
-This guide walks you through the process of wrapping database operations with non-intrusive transactions. You will see how you can easily make a database operation transactional without having to write any [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
+This guide walks you through the process of wrapping database operations with non-intrusive transactions. You will see how you can easily make a database operation transactional without having to write [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
 
 
 What you'll need
@@ -43,7 +43,7 @@ First, use the `BookingService` class to create a JDBC-based service that books 
 
 The code has an autowired `JdbcTemplate`, a handy template class that does all the database interactions needed by the code below.
 
-You also have method `book` aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table using the `JdbcTemplate`. This method is tagged with `@Transactional`, meaning that any failure causes the entire operation to rollback to its previous state, and then re-throw the original exception. That means that an entire batch of people will fail to be added to `BOOKINGS` if one person fails.
+You also have a `book` method aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table using the `JdbcTemplate`. This method is tagged with `@Transactional`, meaning that any failure causes the entire operation to roll back to its previous state, and to re-throw the original exception. This means that none of the people will be added to `BOOKINGS` if one person fails to be added.
 
 You also have a `findAllBookings` method to query the database. Each row fetched from the database is converted into a `String` and then assembled into a `List`.
 
@@ -95,7 +95,7 @@ insert into BOOKINGS(FIRST_NAME) values (?) [23502-171]; nested exception is org
 insert into BOOKINGS(FIRST_NAME) values (?) [23502-171]
 ```
 
-The `BOOKINGS` table has two constraints on the **first_name** column.
+The `BOOKINGS` table has two constraints on the **first_name** column:
 - Names cannot be longer than five characters.
 - Names cannot be null.
 
