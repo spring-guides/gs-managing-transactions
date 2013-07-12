@@ -6,7 +6,7 @@
 What you'll build
 -----------------
 
-This guide walks you through the process of wrapping database operations with transactions.
+This guide walks you through the process of wrapping database operations with non-intrusive transactions. You will see how you can easily make a database operation transactional without having to write any [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
 
 
 What you'll need
@@ -41,9 +41,9 @@ First, use the `BookingService` class to create a JDBC-based service that books 
 
     <@snippet path="src/main/java/hello/BookingService.java" prefix="complete"/>
 
-The code has an autowired `JdbcTemplate`, a handy template class that does all the database work.
+The code has an autowired `JdbcTemplate`, a handy template class that does all the database interactions needed by the code below.
 
-You also have a method aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table. This method is tagged with `@Transactional`, meaning that any failure causes the entire operation to rollback to its previous state, and then re-throw the original exception.
+You also have method `book` aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table using the `JdbcTemplate`. This method is tagged with `@Transactional`, meaning that any failure causes the entire operation to rollback to its previous state, and then re-throw the original exception. That means that an entire batch of people will fail to be added to `BOOKINGS` if one person fails.
 
 You also have a `findAllBookings` method to query the database. Each row fetched from the database is converted into a `String` and then assembled into a `List`.
 
@@ -53,9 +53,11 @@ As shown above, `JdbcTemplate` is autowired into `BookingService`, meaning you n
 
     <@snippet path="src/main/java/hello/Application.java" prefix="complete"/>
     
-> **Note:** `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. Also, in production systems, database tables are usually declared outside the application.
+> **Note:** `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. For production, you probably want some sort of JDBC connection pool to handle multiple requests coming in simultaneously.
 
-The method where you define `JdbcTemplate` also contains some DDL to declare the `BOOKINGS` table.
+The `jdbcTemplate` method where you create an instance of `JdbcTemplate` also contains some DDL to declare the `BOOKINGS` table.
+
+> **Note:** In production systems, database tables are usually declared outside the application.
 
 You also have wired in the `BookingService`.
 

@@ -5,7 +5,7 @@
 What you'll build
 -----------------
 
-This guide walks you through the process of wrapping database operations with transactions.
+This guide walks you through the process of wrapping database operations with non-intrusive transactions. You will see how you can easily make a database operation transactional without having to write any [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
 
 
 What you'll need
@@ -147,7 +147,7 @@ Note to experienced Maven users who are unaccustomed to using an external parent
 <a name="initial"></a>
 Create a booking service
 ------------------------
-To kick things off, you first need to create a JDBC-based service that books people into the system by name. For that, you create a `BookingService`.
+First, use the `BookingService` class to create a JDBC-based service that books people into the system by name. 
 
 `src/main/java/hello/BookingService.java`
 ```java
@@ -187,15 +187,15 @@ public class BookingService {
 }
 ```
 
-The code has an autowired `JdbcTemplate`, a handy template class used to do all the database work.
+The code has an autowired `JdbcTemplate`, a handy template class that does all the database interactions needed by the code below.
 
-You also have a method aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table. This method is tagged with `@Transactional`, meaning that any failure will cause the entire operation to rollback to it's previous state, and then re-throw the original exception.
+You also have method `book` aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table using the `JdbcTemplate`. This method is tagged with `@Transactional`, meaning that any failure causes the entire operation to rollback to its previous state, and then re-throw the original exception. That means that an entire batch of people will fail to be added to `BOOKINGS` if one person fails.
 
 You also have a `findAllBookings` method to query the database. Each row fetched from the database is converted into a `String` and then assembled into a `List`.
 
-Building an application
+Build an application
 -----------------------
-You've already seen `JdbcTemplate` in action up above. But it was autowired into the `BookingService`, meaning you need to define it in the `Application` code as shown below:
+As shown above, `JdbcTemplate` is autowired into `BookingService`, meaning you now need to define it in the `Application` code:
 
 `src/main/java/hello/Application.java`
 ```java
@@ -274,16 +274,18 @@ public class Application {
 }
 ```
     
-The method where you define `JdbcTemplate` also contains some DDL to declare the `BOOKINGS` table.
+> **Note:** `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. For production, you probably want some sort of JDBC connection pool to handle multiple requests coming in simultaneously.
 
-> **Note:** `SimpleDriverDataSource` is a convenience class and **not** intended for production. Also, in production systems, database tables are usually declared outside the application.
+The `jdbcTemplate` method where you create an instance of `JdbcTemplate` also contains some DDL to declare the `BOOKINGS` table.
+
+> **Note:** In production systems, database tables are usually declared outside the application.
 
 You also have wired in the `BookingService`.
 
 The `main()` method defers to the [`SpringApplication`][] helper class, providing `Application.class` as an argument to its `run()` method. This tells Spring to read the annotation metadata from `Application` and to manage it as a component in the _[Spring application context][u-application-context]_.
 
-What's most valuable in this application configuration is:
-- `@EnableTransactionManagement` activates Spring's seamless transaction features. This is what makes `@Transactional` function.
+Note two especially valuable parts of this application configuration:
+- `@EnableTransactionManagement` activates Spring's seamless transaction features, which makes `@Transactional` function.
 - [`@EnableAutoConfiguration`][] switches on reasonable default behaviors based on the content of your classpath. For example, it detects that you have **spring-tx** on the path as well as a `DataSource`, and automatically creates the other beans needed for transactions. Auto-configuration is a powerful, flexible mechanism. See the [API documentation][`@EnableAutoConfiguration`] for further details.
 
 
@@ -351,18 +353,18 @@ insert into BOOKINGS(FIRST_NAME) values (?) [23502-171]
 ```
 
 The `BOOKINGS` table has two constraints on the **first_name** column.
-- Names cannot be any longer than five characters
-- Names cannot be null
+- Names cannot be longer than five characters.
+- Names cannot be null.
 
 The first three names inserted are **Alice**, **Bob**, and **Carol**. The application asserts that three people were added to that table. If that had not worked, the application would have exited early.
 
-Next, another booking is done for **Chris** and **Samuel**. Samuel's name is deliberately too long, forcing an insert error. Transactional behavior stipulates that both Chris and Samuel, i.e. this transaction, should be rolled back. This means there should still only be three people in that table, which the assertion demonstrates.
+Next, another booking is done for **Chris** and **Samuel**. Samuel's name is deliberately too long, forcing an insert error. Transactional behavior stipulates that both Chris and Samuel; that is, this transaction, should be rolled back. Thus there should still be only three people in that table, which the assertion demonstrates.
 
-Finally, **Buddy** and **null** are booked. As the output shows, null causes a rollback as well, leaving us with the same three people booked.
+Finally, **Buddy** and **null** are booked. As the output shows, null causes a rollback as well, leaving the same three people booked.
 
 Summary
 -------
-Congrats! You've just used Spring to develop a simple JDBC application wrapped with non-intrusive transactions.
+Congratulations! You've just used Spring to develop a simple JDBC application wrapped with non-intrusive transactions.
 
 [u-application-context]: /understanding/application-context
 [`SpringApplication`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.BUILD-SNAPSHOT/javadoc-api/org/springframework/bootstrap/SpringApplication.html
