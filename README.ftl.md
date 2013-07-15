@@ -49,17 +49,17 @@ You also have a `findAllBookings` method to query the database. Each row fetched
 
 Build an application
 -----------------------
-As shown above, `JdbcTemplate` is autowired into `BookingService`, meaning you now need to define it in the `Application` code:
-
     <@snippet path="src/main/java/hello/Application.java" prefix="complete"/>
+
+You configure your beans in the `Application` configuration class. The `bookingService` method wires in an instance of `BookingService`.
+
+As shown earlier in this guide, `JdbcTemplate` is autowired into `BookingService`, meaning you now need to define it in the `Application` code:
     
-> **Note:** `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. For production, you probably want some sort of JDBC connection pool to handle multiple requests coming in simultaneously.
+> **Note:** `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. For production, you usually want some sort of JDBC connection pool to handle multiple requests coming in simultaneously.
 
 The `jdbcTemplate` method where you create an instance of `JdbcTemplate` also contains some DDL to declare the `BOOKINGS` table.
 
 > **Note:** In production systems, database tables are usually declared outside the application.
-
-You also have wired in the `BookingService`.
 
 The `main()` method defers to the [`SpringApplication`][] helper class, providing `Application.class` as an argument to its `run()` method. This tells Spring to read the annotation metadata from `Application` and to manage it as a component in the _[Spring application context][u-application-context]_.
 

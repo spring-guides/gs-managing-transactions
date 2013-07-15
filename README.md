@@ -5,7 +5,7 @@
 What you'll build
 -----------------
 
-This guide walks you through the process of wrapping database operations with non-intrusive transactions. You will see how you can easily make a database operation transactional without having to write any [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
+This guide walks you through the process of wrapping database operations with non-intrusive transactions. You will see how you can easily make a database operation transactional without having to write [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
 
 
 What you'll need
@@ -189,14 +189,12 @@ public class BookingService {
 
 The code has an autowired `JdbcTemplate`, a handy template class that does all the database interactions needed by the code below.
 
-You also have method `book` aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table using the `JdbcTemplate`. This method is tagged with `@Transactional`, meaning that any failure causes the entire operation to rollback to its previous state, and then re-throw the original exception. That means that an entire batch of people will fail to be added to `BOOKINGS` if one person fails.
+You also have a `book` method aimed at booking multiple people. It loops through the list of people, and for each person, inserts them into the `BOOKINGS` table using the `JdbcTemplate`. This method is tagged with `@Transactional`, meaning that any failure causes the entire operation to roll back to its previous state, and to re-throw the original exception. This means that none of the people will be added to `BOOKINGS` if one person fails to be added.
 
 You also have a `findAllBookings` method to query the database. Each row fetched from the database is converted into a `String` and then assembled into a `List`.
 
 Build an application
 -----------------------
-As shown above, `JdbcTemplate` is autowired into `BookingService`, meaning you now need to define it in the `Application` code:
-
 `src/main/java/hello/Application.java`
 ```java
 package hello;
@@ -273,14 +271,16 @@ public class Application {
 
 }
 ```
+
+You configure your beans in the `Application` configuration class. The `bookingService` method wires in an instance of `BookingService`.
+
+As shown earlier in this guide, `JdbcTemplate` is autowired into `BookingService`, meaning you now need to define it in the `Application` code:
     
-> **Note:** `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. For production, you probably want some sort of JDBC connection pool to handle multiple requests coming in simultaneously.
+> **Note:** `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. For production, you usually want some sort of JDBC connection pool to handle multiple requests coming in simultaneously.
 
 The `jdbcTemplate` method where you create an instance of `JdbcTemplate` also contains some DDL to declare the `BOOKINGS` table.
 
 > **Note:** In production systems, database tables are usually declared outside the application.
-
-You also have wired in the `BookingService`.
 
 The `main()` method defers to the [`SpringApplication`][] helper class, providing `Application.class` as an argument to its `run()` method. This tells Spring to read the annotation metadata from `Application` and to manage it as a component in the _[Spring application context][u-application-context]_.
 
@@ -352,7 +352,7 @@ insert into BOOKINGS(FIRST_NAME) values (?) [23502-171]; nested exception is org
 insert into BOOKINGS(FIRST_NAME) values (?) [23502-171]
 ```
 
-The `BOOKINGS` table has two constraints on the **first_name** column.
+The `BOOKINGS` table has two constraints on the **first_name** column:
 - Names cannot be longer than five characters.
 - Names cannot be null.
 
