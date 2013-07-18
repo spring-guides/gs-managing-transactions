@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-managing-transactions-initial</artifactId>
+    <artifactId>gs-managing-transactions</artifactId>
     <version>0.1.0</version>
 
     <parent>
