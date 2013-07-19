@@ -3,8 +3,8 @@ package hello;
 import javax.sql.DataSource;
 
 import org.junit.Assert;
+import org.springframework.autoconfigure.EnableAutoConfiguration;
 import org.springframework.bootstrap.SpringApplication;
-import org.springframework.bootstrap.context.annotation.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
