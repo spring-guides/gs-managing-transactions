@@ -1,7 +1,4 @@
 
-# Getting Started: Managing Transactions
-
-
 What you'll build
 -----------------
 

@@ -1,8 +1,5 @@
 <#assign project_id="gs-managing-transactions">
 
-# Getting Started: Managing Transactions
-
-
 What you'll build
 -----------------
 
