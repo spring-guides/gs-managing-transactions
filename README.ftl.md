@@ -67,7 +67,7 @@ Note two especially valuable parts of this application configuration:
 
 <@build_an_executable_jar/>
 
-<@run_the_application/>
+<@run_the_application_with_maven/>
 
 You should see the following output:
 
