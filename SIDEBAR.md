@@ -10,11 +10,11 @@ There's more to data persistence than what is presented here. You can continue t
 * [Accessing Data with GemFire][gs-accessing-data-gemfire]
 * [Accessing Data with Neo4j][gs-accessing-data-neo4j]
 
-[gs-relational-data-access]: /guides/gs/relational-data-access/content
-[gs-accessing-data-mongo]: /guides/gs/accessing-data-mongo/content
-[gs-accessing-data-jpa]: /guides/gs/accessing-data-jpa/content
-[gs-accessing-data-gemfire]: /guides/gs/accessing-data-gemfire/content
-[gs-accessing-data-neo4j]: /guides/gs/accessing-data-neo4j/content
+[gs-relational-data-access]: /guides/gs/relational-data-access/
+[gs-accessing-data-mongo]: /guides/gs/accessing-data-mongo/
+[gs-accessing-data-jpa]: /guides/gs/accessing-data-jpa/
+[gs-accessing-data-gemfire]: /guides/gs/accessing-data-gemfire/
+[gs-accessing-data-neo4j]: /guides/gs/accessing-data-neo4j/
 
 ### Tutorials
 
