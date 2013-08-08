@@ -1,9 +1,10 @@
 <#assign project_id="gs-managing-transactions">
+This guide walks you through the process of wrapping database operations with non-intrusive transactions.
 
 What you'll build
 -----------------
 
-This guide walks you through the process of wrapping database operations with non-intrusive transactions. You will see how you can easily make a database operation transactional without having to write [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
+You will see how you can easily make a database operation transactional without having to write [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
 
 
 What you'll need
