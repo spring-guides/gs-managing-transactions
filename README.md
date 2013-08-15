@@ -27,13 +27,14 @@ To **start from scratch**, move on to [Set up the project](#scratch).
 
 To **skip the basics**, do the following:
 
- - [Download][zip] and unzip the source repository for this guide, or clone it using [git](/understanding/git):
+ - [Download][zip] and unzip the source repository for this guide, or clone it using [git][u-git]:
 `git clone https://github.com/springframework-meta/gs-managing-transactions.git`
  - cd into `gs-managing-transactions/initial`.
  - Jump ahead to [Create a booking service](#initial).
 
 **When you're finished**, you can check your results against the code in `gs-managing-transactions/complete`.
 [zip]: https://github.com/springframework-meta/gs-managing-transactions/archive/master.zip
+[u-git]: /understanding/Git
 
 
 <a name="scratch"></a>
