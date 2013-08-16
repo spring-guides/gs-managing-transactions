@@ -25,9 +25,9 @@ Set up the project
 
 <@create_directory_structure_hello/>
 
-### Create a Maven POM
+### Create a Gradle build file
 
-    <@snippet path="pom.xml" prefix="initial"/>
+    <@snippet path="build.gradle" prefix="initial"/>
 
 <@bootstrap_starter_pom_disclaimer/>
 
@@ -66,9 +66,9 @@ Note two especially valuable parts of this application configuration:
 - [`@EnableAutoConfiguration`][] switches on reasonable default behaviors based on the content of your classpath. For example, it detects that you have **spring-tx** on the path as well as a `DataSource`, and automatically creates the other beans needed for transactions. Auto-configuration is a powerful, flexible mechanism. See the [API documentation][`@EnableAutoConfiguration`] for further details.
 
 
-<@build_an_executable_jar/>
+<@build_an_executable_jar_with_gradle/>
 
-<@run_the_application_with_maven/>
+<@run_the_application_with_gradle/>
 
 You should see the following output:
 
