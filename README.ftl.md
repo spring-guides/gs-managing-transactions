@@ -4,7 +4,7 @@ This guide walks you through the process of wrapping database operations with no
 What you'll build
 -----------------
 
-You will see how you can easily make a database operation transactional without having to write [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
+You'll build a simple JDBC application wherein you make database operations transactional without having to write [specialized JDBC code](http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions).
 
 
 What you'll need
