@@ -83,7 +83,7 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter:0.5.0.BUILD-SNAPSHOT")
+    compile("org.springframework.boot:spring-boot-starter:0.5.0.M2")
     compile("org.springframework:spring-tx:4.0.0.M2")
     compile("org.springframework:spring-jdbc:4.0.0.M2")
     compile("com.h2database:h2:1.3.172")
@@ -259,7 +259,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:0.5.0.BUILD-SNAPSHOT")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:0.5.0.M2")
     }
 }
 ```
@@ -345,6 +345,6 @@ Summary
 Congratulations! You've just used Spring to develop a simple JDBC application wrapped with non-intrusive transactions.
 
 [u-application-context]: /understanding/application-context
-[`SpringApplication`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.BUILD-SNAPSHOT/javadoc-api/org/springframework/bootstrap/SpringApplication.html
-[`@EnableAutoConfiguration`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.BUILD-SNAPSHOT/javadoc-api/org/springframework/bootstrap/context/annotation/SpringApplication.html
+[`SpringApplication`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.M2/javadoc-api/org/springframework/bootstrap/SpringApplication.html
+[`@EnableAutoConfiguration`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.M2/javadoc-api/org/springframework/bootstrap/context/annotation/SpringApplication.html
 

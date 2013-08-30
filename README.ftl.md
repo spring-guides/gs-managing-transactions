@@ -107,6 +107,6 @@ Summary
 Congratulations! You've just used Spring to develop a simple JDBC application wrapped with non-intrusive transactions.
 
 <@u_application_context/>
-[`SpringApplication`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.BUILD-SNAPSHOT/javadoc-api/org/springframework/bootstrap/SpringApplication.html
-[`@EnableAutoConfiguration`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.BUILD-SNAPSHOT/javadoc-api/org/springframework/bootstrap/context/annotation/SpringApplication.html
+[`SpringApplication`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.M2/javadoc-api/org/springframework/bootstrap/SpringApplication.html
+[`@EnableAutoConfiguration`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.M2/javadoc-api/org/springframework/bootstrap/context/annotation/SpringApplication.html
 
