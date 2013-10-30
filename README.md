@@ -83,7 +83,7 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter:0.5.0.M4")
+    compile("org.springframework.boot:spring-boot-starter:0.5.0.M5")
     compile("org.springframework:spring-tx:4.0.0.M3")
     compile("org.springframework:spring-jdbc:4.0.0.M3")
     compile("com.h2database:h2:1.3.172")
