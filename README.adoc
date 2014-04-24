@@ -2,7 +2,7 @@
 tags: []
 projects: []
 ---
-:spring_boot_version: 1.0.1.RELEASE
+:spring_boot_version: 1.0.2.RELEASE
 :EnableAutoConfiguration: http://docs.spring.io/spring-boot/docs/{spring_boot_version}/api/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html
 :SpringApplication: http://docs.spring.io/spring-boot/docs/{spring_boot_version}/api/org/springframework/boot/SpringApplication.html
 :toc:
