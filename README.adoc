@@ -75,7 +75,6 @@ Note two especially valuable parts of this application configuration:
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_with_both.adoc[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/run_the_application_with_both.adoc[]
 
 You should see the following output:
 
