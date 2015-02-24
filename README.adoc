@@ -3,7 +3,6 @@ tags: []
 projects: []
 ---
 :spring_boot_version: 1.2.1.RELEASE
-:EnableAutoConfiguration: http://docs.spring.io/spring-boot/docs/{spring_boot_version}/api/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html
 :SpringApplication: http://docs.spring.io/spring-boot/docs/{spring_boot_version}/api/org/springframework/boot/SpringApplication.html
 :toc:
 :icons: font
@@ -55,23 +54,24 @@ You also have a `findAllBookings` method to query the database. Each row fetched
 include::complete/src/main/java/hello/Application.java[]
 ----
 
+`@SpringBootApplication` is a convenience annotation that adds all of the following:
+    
+- `@Configuration` tags the class as a source of bean definitions for the application context.
+- `@EnableAutoConfiguration` tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.
+- Normally you would add `@EnableWebMvc` for a Spring MVC app, but Spring Boot adds it automatically when it sees **spring-webmvc** on the classpath. This flags the application as a web application and activates key behaviors such as setting up a `DispatcherServlet`.
+- `@ComponentScan` tells Spring to look for other components, configurations, and services in the the `hello` package, allowing it to find the `HelloController`.
+
+The `main()` method uses Spring Boot's `SpringApplication.run()` method to launch an application. Did you notice that there wasn't a single line of XML? No **web.xml** file either. This web application is 100% pure Java and you didn't have to deal with configuring any plumbing or infrastructure.
+
 You configure your beans in the `Application` configuration class. The `bookingService` method wires in an instance of `BookingService`.
 
 As shown earlier in this guide, `JdbcTemplate` is autowired into `BookingService`, meaning you now need to define it in the `Application` code:
     
-NOTE: `SimpleDriverDataSource` is a convenience class and is _not_ intended for production. For production, you usually want some sort of JDBC connection pool to handle multiple requests coming in simultaneously.
-
 The `jdbcTemplate` method where you create an instance of `JdbcTemplate` also contains some DDL to declare the `BOOKINGS` table.
 
+Spring Boot automatically creates the needed beans for transactions based on the presence of *spring-tx* on the classpath.
+
 NOTE: In production systems, database tables are usually declared outside the application.
-
-The `main()` method defers to the {SpringApplication}[`SpringApplication`] helper class, providing `Application.class` as an argument to its `run()` method. This tells Spring to read the annotation metadata from `Application` and to manage it as a component in the _link:/understanding/application-context[Spring application context]_.
-
-Note two especially valuable parts of this application configuration:
-
-- `@EnableTransactionManagement` activates Spring's seamless transaction features, which makes `@Transactional` function.
-- {EnableAutoConfiguration}[`@EnableAutoConfiguration`] switches on reasonable default behaviors based on the content of your classpath. For example, it detects that you have **spring-tx** on the path as well as a `DataSource`, and automatically creates the other beans needed for transactions. Auto-configuration is a powerful, flexible mechanism. See the {EnableAutoConfiguration}[API documentation] for further details.
-
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_with_both.adoc[]
 
