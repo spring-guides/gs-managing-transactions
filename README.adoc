@@ -125,3 +125,6 @@ Finally, **Buddy** and **null** are booked. As the output shows, null causes a r
 Congratulations! You've just used Spring to develop a simple JDBC application wrapped with non-intrusive transactions.
 
 
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
+
