@@ -4,6 +4,7 @@ projects: []
 ---
 :spring_boot_version: 1.4.0.RELEASE
 :SpringApplication: http://docs.spring.io/spring-boot/docs/{spring_boot_version}/api/org/springframework/boot/SpringApplication.html
+:runner: http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-command-line-runner
 :toc:
 :icons: font
 :source-highlighter: prettify
@@ -67,7 +68,7 @@ Another Spring Boot feature demonstrated in this guide is http://docs.spring.io/
 include::complete/src/main/resources/schema.sql[]
 ----
 
-There is also a http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-command-line-runner[`CommandLineRunner`] that injects the `BookingService` and showcases various transactional use cases.
+There is also a {runner}[`CommandLineRunner`] that injects the `BookingService` and showcases various transactional use cases.
 
 `src/main/java/hello/AppRunner.java`
 [source,java]
