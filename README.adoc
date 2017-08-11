@@ -35,7 +35,7 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 
 [[initial]]
 == Create a booking service
-First, use the `BookingService` class to create a JDBC-based service that books people into the system by name. 
+First, use the `BookingService` class to create a JDBC-based service that books people into the system by name.
 
 `src/main/java/hello/BookingService.java`
 [source,java]
@@ -127,7 +127,13 @@ Finally, **Buddy** and **null** are booked. As the output shows, null causes a r
 == Summary
 Congratulations! You've just used Spring to develop a simple JDBC application wrapped with non-intrusive transactions.
 
+== See Also
 
+The following guides may also be helpful:
+
+* https://spring.io/guides/gs/spring-boot/[Building an Application with Spring Boot]
+* https://spring.io/guides/gs/accessing-data-jpa/[Accessing Data with JPA]
+* https://spring.io/guides/gs/accessing-data-mongodb/[Accessing Data with MongoDB]
+* https://spring.io/guides/gs/accessing-data-mysql/[Accessing data with MySQL]
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
-
