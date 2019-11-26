@@ -64,7 +64,7 @@ books people into the system by name. The following listing (from
 `src/main/java/com/example/managingtransactions/BookingService.java`) shows how to do so:
 
 ====
-[source,java]
+[source,java,tabsize=2]
 ----
 include::complete/src/main/java/com/example/managingtransactions/BookingService.java[]
 ----
@@ -91,7 +91,7 @@ this application case. The following listing (from
 shows the application class
 
 ====
-[source,java]
+[source,java,tabsize=2]
 ----
 include::complete/src/main/java/com/example/managingtransactions/ManagingTransactionsApplication.java[]
 ----
@@ -123,7 +123,7 @@ showcases various transactional use cases. The following listing (from
 runner:
 
 ====
-[source,java]
+[source,java,tabsize=2]
 ----
 include::complete/src/main/java/com/example/managingtransactions/AppRunner.java[]
 ----
