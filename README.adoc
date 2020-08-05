@@ -86,7 +86,7 @@ database is converted into a `String`, and all the rows are assembled into a `Li
 == Build an Application
 
 The Spring Initializr provides an application class. In this case, you need not modify
-this application case. The following listing (from
+this application class. The following listing (from
 `src/main/java/com/example/managingtransactions/ManagingTransactionsApplication.java`)
 shows the application class
 
@@ -97,7 +97,7 @@ include::complete/src/main/java/com/example/managingtransactions/ManagingTransac
 ----
 ====
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-application.adoc[]
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-application-new-path.adoc[]
 
 Your application actually has zero configuration. Spring Boot detects `spring-jdbc` and
 `h2` on the classpath and automatically creates a `DataSource` and a `JdbcTemplate` for
