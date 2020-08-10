@@ -13,7 +13,7 @@ non-intrusive transactions.
 
 You will build a simple JDBC application wherein you make database operations
 transactional without having to write
-http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions[specialized JDBC code].
+https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html#commit_transactions[specialized JDBC code].
 
 == What You Need
 
@@ -98,7 +98,8 @@ a `DataSourceTransactionManager` is also created for you. This is the component 
 intercepts the method annotated with `@Transactional` (for example, the `book` method on
 `BookingService`). The `BookingService` is detected by classpath scanning.
 
-Another Spring Boot feature demonstrated in this guide is https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-initialize-a-database-using-spring-jdbc[the ability to initialize the schema on startup]:
+Another Spring Boot feature demonstrated in this guide is https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-initialize-a-database-using-spring-jdbc[the ability to initialize the schema on startup].
+The following file (from src/main/resources/schema.sql) defines the database schema:
 
 ====
 [source,sql]
