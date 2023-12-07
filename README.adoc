@@ -1,5 +1,3 @@
-:spring_boot_version: current
-:SpringApplication: https://docs.spring.io/spring-boot/docs/{spring_boot_version}/api/org/springframework/boot/SpringApplication.html
 :runner: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-command-line-runner
 :toc:
 :icons: font
