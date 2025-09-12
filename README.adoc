@@ -22,32 +22,37 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 [[scratch]]
 == Starting with Spring Initializr
 
-You can use this https://start.spring.io/#!type=maven-project&groupId=com.example&artifactId=managing-transactions&name=managing-transactions&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.managing-transactions&dependencies=data-jdbc,h2[pre-initialized project] and click Generate to download a ZIP file. This project is configured to fit the examples in this tutorial.
+You can use this https://start.spring.io/#!type=maven-project&groupId=com.example&artifactId=managing-transactions&name=managing-transactions&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.managingtransactions&dependencies=data-jdbc,h2[pre-initialized project] and click Generate to download a ZIP file. This project is configured to fit the examples in this tutorial.
 
 To manually initialize the project:
 
 . Navigate to https://start.spring.io.
 This service pulls in all the dependencies you need for an application and does most of the setup for you.
-. Choose either Gradle or Maven and the language you want to use. This guide assumes that you chose Java.
+. Choose either Gradle or Maven and the language you want to use: Kotlin or Java.
 . Click *Dependencies* and select *Spring Data JDBC* and *H2 Database*.
 . Click *Generate*.
 . Download the resulting ZIP file, which is an archive of a web application that is configured with your choices.
 
 NOTE: If your IDE has the Spring Initializr integration, you can complete this process from your IDE.
 
-NOTE: You can also fork the project from Github and open it in your IDE or other editor.
+NOTE: You can also fork the project from GitHub and open it in your IDE or other editor.
 
 [[initial]]
 == Create a Booking Service
 
 First, you need to use the `BookingService` class to create a JDBC-based service that
-books people into the system by name. The following listing (from
-`src/main/java/com/example/managingtransactions/BookingService.java`) shows how to do so:
+books people into the system by name. The following listing shows how to do so:
 
 ====
-[source,java,tabsize=2]
+[source,java,indent=0,subs="verbatim,quotes",role="primary"]
+.Java
 ----
 include::complete/src/main/java/com/example/managingtransactions/BookingService.java[]
+----
+[source,kotlin,indent=0,subs="verbatim,quotes",role="secondary"]
+.Kotlin
+----
+include::complete-kotlin/src/main/kotlin/com/example/managingtransactions/BookingService.kt[]
 ----
 ====
 
@@ -67,22 +72,26 @@ database is converted into a `String`, and all the rows are assembled into a `Li
 == Build an Application
 
 The Spring Initializr provides an application class. In this case, you need not modify
-this application class. The following listing (from
-`src/main/java/com/example/managingtransactions/ManagingTransactionsApplication.java`)
-shows the application class
+this application class. The following listing shows the application class:
 
 ====
-[source,java,tabsize=2]
+[source,java,indent=0,subs="verbatim,quotes",role="primary"]
+.Java
 ----
 include::complete/src/main/java/com/example/managingtransactions/ManagingTransactionsApplication.java[]
+----
+[source,kotlin,indent=0,subs="verbatim,quotes",role="secondary"]
+.Kotlin
+----
+include::complete-kotlin/src/main/kotlin/com/example/managingtransactions/ManagingTransactionsApplication.kt[]
 ----
 ====
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/main/spring-boot-application-new-path.adoc[]
 
 Your application actually has zero configuration. Spring Boot detects `spring-jdbc` and
-`h2` on the classpath and automatically creates a `DataSource` and a `JdbcTemplate` for
-you. Because this infrastructure is now available and you have no dedicated configuration,
+`h2` on the classpath and automatically creates a `DataSource` and a `JdbcTemplate` for you.
+Because this infrastructure is now available and you have no dedicated configuration,
 a `DataSourceTransactionManager` is also created for you. This is the component that
 intercepts the method annotated with `@Transactional` (for example, the `book` method on
 `BookingService`). The `BookingService` is detected by classpath scanning.
@@ -98,14 +107,19 @@ include::complete/src/main/resources/schema.sql[]
 ====
 
 There is also a {runner}[`CommandLineRunner`] that injects the `BookingService` and
-showcases various transactional use cases. The following listing (from
-`src/main/java/com/example/managingtransactions/AppRunner.java`) shows the command line
+showcases various transactional use cases. The following listing shows the command line
 runner:
 
 ====
-[source,java,tabsize=2]
+[source,java,indent=0,subs="verbatim,quotes",role="primary"]
+.Java
 ----
 include::complete/src/main/java/com/example/managingtransactions/AppRunner.java[]
+----
+[source,kotlin,indent=0,subs="verbatim,quotes",role="secondary"]
+.Kotlin
+----
+include::complete-kotlin/src/main/kotlin/com/example/managingtransactions/AppRunner.kt[]
 ----
 ====
 
