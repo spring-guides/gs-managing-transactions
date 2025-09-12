@@ -23,6 +23,7 @@ class AppRunner implements CommandLineRunner {
 		Assert.isTrue(bookingService.findAllBookings().size() == 3,
 				"First booking should work with no problem");
 		logger.info("Alice, Bob and Carol have been booked");
+
 		try {
 			bookingService.book("Chris", "Samuel");
 		} catch (RuntimeException e) {
@@ -31,9 +32,7 @@ class AppRunner implements CommandLineRunner {
 			logger.error(e.getMessage());
 		}
 
-		for (String person : bookingService.findAllBookings()) {
-			logger.info("So far, " + person + " is booked.");
-		}
+		logCurrentBookings();
 		logger.info("You shouldn't see Chris or Samuel. Samuel violated DB constraints, " +
 				"and Chris was rolled back in the same TX");
 		Assert.isTrue(bookingService.findAllBookings().size() == 3,
@@ -47,13 +46,16 @@ class AppRunner implements CommandLineRunner {
 			logger.error(e.getMessage());
 		}
 
-		for (String person : bookingService.findAllBookings()) {
-			logger.info("So far, " + person + " is booked.");
-		}
+		logCurrentBookings();
 		logger.info("You shouldn't see Buddy or null. null violated DB constraints, and " +
 				"Buddy was rolled back in the same TX");
 		Assert.isTrue(bookingService.findAllBookings().size() == 3,
 				"'null' should have triggered a rollback");
 	}
 
+	private void logCurrentBookings() {
+		for (String person : bookingService.findAllBookings()) {
+            logger.info("So far, {} is booked.", person);
+		}
+	}
 }
