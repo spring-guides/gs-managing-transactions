@@ -5,10 +5,10 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
+private val logger = LoggerFactory.getLogger(BookingService::class.java)
+
 @Component
 class BookingService(private val jdbcTemplate: JdbcTemplate) {
-
-    private val logger = LoggerFactory.getLogger(javaClass)
 
     @Transactional
     fun book(vararg persons: String?) {

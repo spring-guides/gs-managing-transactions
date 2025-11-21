@@ -5,10 +5,10 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Component
 import org.springframework.util.Assert
 
+private val logger = LoggerFactory.getLogger(AppRunner::class.java)
+
 @Component
 class AppRunner(private val bookingService: BookingService) : CommandLineRunner {
-
-    private val logger = LoggerFactory.getLogger(javaClass)
 
     override fun run(vararg args: String) {
         bookingService.book("Alice", "Bob", "Carol")
