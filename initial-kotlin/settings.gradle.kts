@@ -1,1 +1,1 @@
-rootProject.name = "gs-managing-transactions"
+rootProject.name = "managing-transactions"
